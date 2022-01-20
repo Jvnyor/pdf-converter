@@ -41,11 +41,11 @@ public class PdfConverterApplication {
     	    for (String line : lines) {	
     	        out.println(line);
     	        }
-
+    	    
             out.flush();
             out.close();
             System.out.println("Conversão completa!");
-                
+            System.out.println("Arquivo criado em "+txtPath);
          } catch (FileNotFoundException e) {
             e.printStackTrace();
          } catch (IOException e) {
