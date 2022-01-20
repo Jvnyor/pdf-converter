@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -16,20 +17,19 @@ import io.github.jonathanlink.PDFLayoutTextStripper;
 
 public class PdfConverterApplication {
 
-    public static void main(String[] args) throws IOException {
-
+    @SuppressWarnings("resource")
+	public static void main(String[] args) throws IOException {
+    	
         String string = null;
         Scanner in = new Scanner(System.in);
-        System.out.println("Insira o caminho do pdf");
+        System.out.println("Insira o caminho do pdf:");
         String pdfPath = in.nextLine();
-        File file = new File(pdfPath);
-        String txtName = file.getName().replace(".pdf", "");
-        String txtPath = "C:\\pdfConverter\\txts\\"+txtName+".txt";
-        if (pdfPath == null) {
-            System.out.println("Erro! Caminho para pdf inválido ou pdf inválido!");
-        }
+        byte[] pdfPathBytes = pdfPath.getBytes();
+        String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
         try {
-            	
+        	File file = new File(pdfPathToUTF8);
+            String txtName = file.getName().replace(".pdf", "");
+            String txtPath = "C:\\pdfConverter\\txts\\"+txtName+".txt";
             PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
             pdfParser.parse();
             PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
@@ -40,7 +40,7 @@ public class PdfConverterApplication {
             String lines[] = string.split("\\r?\\n");
     	    for (String line : lines) {	
     	        out.println(line);
-    	        }
+    	    }
     	    
             out.flush();
             out.close();
