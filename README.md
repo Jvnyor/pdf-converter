@@ -13,4 +13,4 @@ IMPORTANTE: este programa deverá ser colocado na pasta do disco local c, pois p
 
 ## Créditos de uso de bibliotecas prontas:
 
-![PDFLayoutTextStripper](https://github.com/JonathanLink/PDFLayoutTextStripper)
+[PDFLayoutTextStripper](https://github.com/JonathanLink/PDFLayoutTextStripper)
