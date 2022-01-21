@@ -16,42 +16,39 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import io.github.jonathanlink.PDFLayoutTextStripper;
 
 public class PdfConverterApplication {
-
-    @SuppressWarnings("resource")
-	public static void main(String[] args) throws IOException {
+	
+	public static void main(String[] args) {
     	
-        String string = null;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Insira o caminho do pdf:");
-        String pdfPath = in.nextLine();
-        byte[] pdfPathBytes = pdfPath.getBytes();
-        String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
-        try {
-        	File file = new File(pdfPathToUTF8);
-            String txtName = file.getName().replace(".pdf", "");
-            String txtPath = "C:\\pdfConverter\\txts\\"+txtName+".txt";
-            PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
-            pdfParser.parse();
-            PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
-            PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
-            string = pdfTextStripper.getText(pdDocument);
-                
-            PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
-            String lines[] = string.split("\\r?\\n");
-    	    for (String line : lines) {	
-    	        out.println(line);
-    	    }
-    	    
-            out.flush();
-            out.close();
-            System.out.println("Conversão completa!");
-            System.out.println("Arquivo criado em "+txtPath);
-         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-         } catch (IOException e) {
-            e.printStackTrace();
-         };
+        try (Scanner in = new Scanner(System.in)) {
+			System.out.println("Insira o caminho do pdf:");
+			String pdfPath = in.nextLine();
+			byte[] pdfPathBytes = pdfPath.getBytes();
+			String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
+			
+			File file = new File(pdfPathToUTF8);
+			String txtName = file.getName().replace(".pdf", "");
+			String txtPath = "C:\\pdfConverter\\txts\\"+txtName+".txt";
+			PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
+			pdfParser.parse();
+			PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
+			PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
+			String string = pdfTextStripper.getText(pdDocument);
+			        
+			PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
+			String lines[] = string.split("\\r?\\n");
+			for (String line : lines) {	
+				out.println(line);
+			}
+			    
+			out.flush();
+			out.close();
+			System.out.println("Conversão completa!");
+			System.out.println("Arquivo criado em "+txtPath);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
             
-    }
-
 }
