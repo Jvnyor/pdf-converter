@@ -17,6 +17,10 @@ import io.github.jonathanlink.PDFLayoutTextStripper;
 
 public class PdfConverterApplication {
 	
+	/**
+	 * @author Josias Junior https://github.com/Jvnyor
+	 */
+	
 	public static void main(String[] args) {
     	
         try (Scanner in = new Scanner(System.in)) {
