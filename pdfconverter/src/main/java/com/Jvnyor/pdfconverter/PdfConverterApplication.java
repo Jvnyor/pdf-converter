@@ -26,15 +26,17 @@ public class PdfConverterApplication {
 			String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
 			
 			File file = new File(pdfPathToUTF8);
-			String txtName = file.getName().replace(".pdf", "");
-			String txtPath = "C:\\pdfConverter\\txts\\"+txtName+".txt";
+			System.out.println("Insira o caminho do txt:");
+			String txtPath = in.nextLine();
+			byte[] txtPathBytes = txtPath.getBytes();
+			String txtPathToUTF8 = new String(txtPathBytes, StandardCharsets.UTF_8);
 			PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
 			pdfParser.parse();
 			PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
 			PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
 			String string = pdfTextStripper.getText(pdDocument);
 			        
-			PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
+			PrintWriter out = new PrintWriter(new FileOutputStream(txtPathToUTF8));
 			String lines[] = string.split("\\r?\\n");
 			for (String line : lines) {	
 				out.println(line);
