@@ -15,7 +15,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import io.github.jonathanlink.PDFLayoutTextStripper;
 
-public class PdfConverterApplication {
+public class PdfConverterApp {
 	
 	/**
 	 * @author Josias Junior https://github.com/Jvnyor
