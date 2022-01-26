@@ -4,9 +4,8 @@ Project to extract text of pdf in original formatation.
 
 ## Technologies:
 
-JDK 11.
-
-Maven 3.8.3.
+- JDK 11.
+- Maven 3.8.3.
 
 ## Used Libraries
 
