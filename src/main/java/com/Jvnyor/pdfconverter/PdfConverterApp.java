@@ -24,13 +24,13 @@ public class PdfConverterApp {
 	public static void main(String[] args) {
     	
         try (Scanner in = new Scanner(System.in)) {
-			System.out.println("Insira o caminho do pdf:");
+			System.out.println("Insert the path of PDF file saved:");
 			String pdfPath = in.nextLine();
 			byte[] pdfPathBytes = pdfPath.getBytes();
 			String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
 			
 			File file = new File(pdfPathToUTF8);
-			System.out.println("Insira o caminho do txt:");
+			System.out.println("Insert the path of TXT file to save:");
 			String txtPath = in.nextLine();
 			byte[] txtPathBytes = txtPath.getBytes();
 			String txtPathToUTF8 = new String(txtPathBytes, StandardCharsets.UTF_8);
@@ -48,12 +48,14 @@ public class PdfConverterApp {
 			    
 			out.flush();
 			out.close();
-			System.out.println("Conversão completa!");
-			System.out.println("Arquivo criado em "+txtPath);
+			System.out.println("Conversion completed!");
+			System.out.println("TXT file created in "+txtPath);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			System.out.println("Program finished.");
 		}
 	}
             
