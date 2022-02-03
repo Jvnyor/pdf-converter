@@ -49,6 +49,7 @@ public class PdfConverterApp {
 			out.flush();
 			out.close();
 			in.close();
+			pdDocument.close();
 			System.out.println("Conversion completed!");
 			System.out.println("TXT file created in "+txtPath);
 		} catch (FileNotFoundException e) {
