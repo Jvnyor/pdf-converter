@@ -28,8 +28,7 @@ public class PdfConverterApp {
 				+ ": .; :: .  :: .--'  : .--': ,. :: `: :: :: :: .--': .; :`-. .-': .--': .; :\r\n"
 				+ ":  _.': :: :: `;    : :   : :: :: .` :: :: :: `;  :   .'  : :  : `;  :   .'\r\n"
 				+ ": :   : :; :: :     : :__ : :; :: :. :: `' ;: :__ : :.`.  : :  : :__ : :.`.\r\n"
-				+ ":_;   :___.':_;     `.__.'`.__.':_;:_; `.,' `.__.':_;:_;  :_;  `.__.':_;:_;"
-				+"\n");
+				+ ":_;   :___.':_;     `.__.'`.__.':_;:_; `.,' `.__.':_;:_;  :_;  `.__.':_;:_;");
 		
 	     try (Scanner scanner = new Scanner(System.in)) {
 	        	
@@ -37,7 +36,7 @@ public class PdfConverterApp {
 	        	
 	        do {
 		        	
-				System.out.println("Insert the PDF path:");
+				System.out.print("\nInsert the .pdf file path in computer: ");
 					
 				String pdfPath = scanner.nextLine();
 					
@@ -47,7 +46,7 @@ public class PdfConverterApp {
 					
 				File file = new File(pdfPathToUTF8);
 				
-				System.out.println("Insert the txt path to save:");
+				System.out.print("\nInsert the .txt file path to save into computer: ");
 					
 				String txtPath = scanner.nextLine();
 					
@@ -81,15 +80,13 @@ public class PdfConverterApp {
 					
 				pdDocument.close();
 					
-				System.out.println("File created in "+txtPath);
+				System.out.println("\nFile created in "+txtPath);
 					
-				System.out.println("Do you wants new conversion? Y/N");
+				System.out.print("\nDo you wants new conversion? Y/N: ");
 					
 				nextLine = scanner.nextLine().charAt(0);
 					
 	        } while (nextLine == 'Y' || nextLine == 'y');
-	        	
-	        System.out.println("End program.");
 	        	
 	        scanner.close();
 	        	
