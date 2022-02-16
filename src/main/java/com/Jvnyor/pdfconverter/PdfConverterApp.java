@@ -24,7 +24,7 @@ public class PdfConverterApp {
 	public static void main(String[] args) {
 
 		System.out.println("\n"
-				+".---. .---. .---.    .--.  .--. .-..-..-..-. .--. .---. .-----. .--. .---. \r\n"
+				+ ".---. .---. .---.    .--.  .--. .-..-..-..-. .--. .---. .-----. .--. .---. \r\n"
 				+ ": .; :: .  :: .--'  : .--': ,. :: `: :: :: :: .--': .; :`-. .-': .--': .; :\r\n"
 				+ ":  _.': :: :: `;    : :   : :: :: .` :: :: :: `;  :   .'  : :  : `;  :   .'\r\n"
 				+ ": :   : :; :: :     : :__ : :; :: :. :: `' ;: :__ : :.`.  : :  : :__ : :.`.\r\n"
@@ -38,7 +38,7 @@ public class PdfConverterApp {
 			
 			try {
 			        	
-				String pdfPath;
+				String pdfPath = null;
 						
 				do {
 					
@@ -46,7 +46,7 @@ public class PdfConverterApp {
 					
 					pdfPath = scanner.nextLine();
 					
-				} while (!pdfPath.contains(".pdf"));
+				} while (!pdfPath.contains(".pdf") && pdfPath == null);
 				
 				byte[] pdfPathBytes = pdfPath.getBytes();
 						
@@ -54,7 +54,7 @@ public class PdfConverterApp {
 						
 				File file = new File(pdfPathToUTF8);
 					
-				String txtPath;
+				String txtPath = null;
 						
 				do {
 					
@@ -62,7 +62,7 @@ public class PdfConverterApp {
 					
 					txtPath = scanner.nextLine();
 					
-				} while (!txtPath.contains(".txt"));
+				} while (!txtPath.contains(".txt") && txtPath == null);
 				
 				byte[] txtPathBytes = txtPath.getBytes();
 						
@@ -114,9 +114,12 @@ public class PdfConverterApp {
 					
 			}
 		     
+			if (nextLine == 'N' || nextLine == 'n') {
+				scanner.close();
+				break;
+			}
+			
 	    } while (nextLine == 'Y' || nextLine == 'y');
-     	
-	    scanner.close();
 		
 	}
 
