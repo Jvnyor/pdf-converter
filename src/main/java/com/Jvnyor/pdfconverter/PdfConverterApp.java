@@ -48,11 +48,7 @@ public class PdfConverterApp {
 					
 				} while (!pdfPath.contains(".pdf") && pdfPath == null);
 				
-				byte[] pdfPathBytes = pdfPath.getBytes();
-						
-				String pdfPathToUTF8 = new String(pdfPathBytes, StandardCharsets.UTF_8);
-						
-				File file = new File(pdfPathToUTF8);
+				File file = new File(pdfPath);
 					
 				String txtPath = null;
 						
@@ -64,10 +60,6 @@ public class PdfConverterApp {
 					
 				} while (!txtPath.contains(".txt") && txtPath == null);
 				
-				byte[] txtPathBytes = txtPath.getBytes();
-						
-				String txtPathToUTF8 = new String(txtPathBytes, StandardCharsets.UTF_8);
-						
 				PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
 						
 				pdfParser.parse();
@@ -78,7 +70,7 @@ public class PdfConverterApp {
 						
 				String string = pdfTextStripper.getText(pdDocument);
 						        
-				PrintWriter out = new PrintWriter(new FileOutputStream(txtPathToUTF8));
+				PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
 						
 				String lines[] = string.split("\\r?\\n");
 						
