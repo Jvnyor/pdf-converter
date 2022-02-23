@@ -45,7 +45,7 @@ public class PdfConverterApp {
 					
 					pdfPath = scanner.nextLine();
 					
-				} while (!pdfPath.contains(".pdf") && pdfPath == null);
+				} while (!pdfPath.contains(".pdf") || pdfPath == null || pdfPath.isBlank());
 				
 				File file = new File(pdfPath);
 					
@@ -57,7 +57,7 @@ public class PdfConverterApp {
 					
 					txtPath = scanner.nextLine();
 					
-				} while (!txtPath.contains(".txt") && txtPath == null);
+				} while (!txtPath.contains(".pdf") || txtPath == null || txtPath.isBlank();
 				
 				PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
 						
