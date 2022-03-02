@@ -91,7 +91,7 @@ public class PdfConverterApp {
 						
 				pdDocument.close();
 				
-				System.out.print("\nDo you wants new conversion? Y/N: ");
+				System.out.print("\nDo you wants new conversion? Y/N or any key: ");
 						
 				nextLine = scanner.nextLine().charAt(0);
 						
