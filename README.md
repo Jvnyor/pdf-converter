@@ -19,4 +19,4 @@ Project to extract text of pdf in original formatation.
 
 - Insert the .pdf file path to extract the text
 - Insert the .txt file path to save txt file generated
-- Select the option to continue (Y), or close (N)
+- Select the option to continue (Y) and (N) to close or any key
