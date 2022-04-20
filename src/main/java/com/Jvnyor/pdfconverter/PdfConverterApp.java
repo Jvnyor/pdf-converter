@@ -22,92 +22,77 @@ public class PdfConverterApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("\n"
-				+ ".---. .---. .---.    .--.  .--. .-..-..-..-. .--. .---. .-----. .--. .---. \r\n"
+		System.out.println("\n" + ".---. .---. .---.    .--.  .--. .-..-..-..-. .--. .---. .-----. .--. .---. \r\n"
 				+ ": .; :: .  :: .--'  : .--': ,. :: `: :: :: :: .--': .; :`-. .-': .--': .; :\r\n"
 				+ ":  _.': :: :: `;    : :   : :: :: .` :: :: :: `;  :   .'  : :  : `;  :   .'\r\n"
 				+ ": :   : :; :: :     : :__ : :; :: :. :: `' ;: :__ : :.`.  : :  : :__ : :.`.\r\n"
 				+ ":_;   :___.':_;     `.__.'`.__.':_;:_; `.,' `.__.':_;:_;  :_;  `.__.':_;:_;");
 
-		char nextLine = 0;
+		try (Scanner scanner = new Scanner(System.in)) {
 
-		do {
+			String pdfPath = null;
 
-			try (Scanner scanner = new Scanner(System.in)) {
+			do {
 
-				String pdfPath = null;
+				System.out.print("\nInsert the .pdf file path in computer: ");
 
-				do {
+				pdfPath = scanner.nextLine();
 
-					System.out.print("\nInsert the .pdf file path in computer: ");
+			} while (!pdfPath.endsWith(".pdf") || pdfPath == null || pdfPath.isBlank() || pdfPath.isEmpty());
 
-					pdfPath = scanner.nextLine();
+			File file = new File(pdfPath);
 
-				} while (!pdfPath.contains(".pdf") || pdfPath == null || pdfPath.isBlank() || pdfPath.isEmpty());
+			String txtPath = null;
 
-				File file = new File(pdfPath);
+			do {
 
-				String txtPath = null;
+				System.out.print("\nInsert the .txt file path to save into computer: ");
 
-				do {
+				txtPath = scanner.nextLine();
 
-					System.out.print("\nInsert the .txt file path to save into computer: ");
+			} while (!txtPath.endsWith(".txt") || txtPath == null || txtPath.isBlank() || txtPath.isEmpty());
 
-					txtPath = scanner.nextLine();
+			PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
 
-				} while (!txtPath.contains(".txt") || txtPath == null || txtPath.isBlank() || txtPath.isEmpty());
+			pdfParser.parse();
 
-				PDFParser pdfParser = new PDFParser(new RandomAccessFile(file, "r"));
+			PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
 
-				pdfParser.parse();
+			PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
 
-				PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
+			String string = pdfTextStripper.getText(pdDocument);
 
-				PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
+			PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
 
-				String string = pdfTextStripper.getText(pdDocument);
+			String lines[] = string.split("\\r?\\n");
 
-				PrintWriter out = new PrintWriter(new FileOutputStream(txtPath));
+			for (String line : lines) {
 
-				String lines[] = string.split("\\r?\\n");
-
-				for (String line : lines) {
-
-					out.println(line);
-
-				}
-
-				if (out != null) {
-
-					System.out.println("\nFile created in " + txtPath);
-
-				}
-
-				out.flush();
-
-				out.close();
-
-				pdDocument.close();
-
-				System.out.print("\nDo you wants new conversion? Y/N or any key: ");
-
-				nextLine = scanner.nextLine().charAt(0);
-
-			} catch (FileNotFoundException e) {
-
-				e.printStackTrace();
-
-			} catch (IOException e) {
-
-				e.printStackTrace();
+				out.println(line);
 
 			}
 
-			if (nextLine == 'N' || nextLine == 'n') {
-				break;
+			if (out != null) {
+
+				System.out.println("\nFile created in " + txtPath);
+
 			}
 
-		} while (nextLine == 'Y' || nextLine == 'y');
+			out.flush();
+
+			out.close();
+
+			pdDocument.close();
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
 
 	}
 
