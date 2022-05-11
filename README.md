@@ -1,4 +1,4 @@
-# PDF Converter
+# PDF Text Extractor
 
 Project to extract text of pdf in original formatation.
 
