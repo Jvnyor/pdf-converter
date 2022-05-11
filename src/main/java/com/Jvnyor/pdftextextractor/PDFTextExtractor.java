@@ -22,7 +22,7 @@ public class PDFTextExtractor {
 
 		File file = null;
 
-		if (pdfPath.endsWith(".pdf") || pdfPath != null || !pdfPath.isBlank() || !pdfPath.isEmpty()) {
+		if (pdfPath != null || !pdfPath.isBlank() || !pdfPath.isEmpty()) {
 			file = new File(pdfPath);
 		}
 
@@ -42,7 +42,7 @@ public class PDFTextExtractor {
 
 			PrintWriter out = null;
 
-			if (txtPath.endsWith(".txt") || txtPath != null || !txtPath.isBlank() || !txtPath.isEmpty()) {
+			if (txtPath != null || !txtPath.isBlank() || !txtPath.isEmpty()) {
 				out = new PrintWriter(new FileOutputStream(txtPath));
 			}
 
