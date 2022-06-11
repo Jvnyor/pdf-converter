@@ -2,11 +2,23 @@
 
 Project to extract text of pdf in original formatation.
 
-## Used Libraries:
+## Clone and execute the project
 
-- [PDFBox](https://github.com/apache/pdfbox)
+```
+git clone https://github.com/Jvnyor/pdf-text-extractor.git
+```
 
-- [PDFLayoutTextStripper](https://github.com/JonathanLink/PDFLayoutTextStripper)
+## Download Maven dependencies
+
+```
+mvn clean install
+```
+
+## Generate jar with dependencies
+
+```
+mvn clean compile assembly:single
+```
 
 ## How to use:
 
