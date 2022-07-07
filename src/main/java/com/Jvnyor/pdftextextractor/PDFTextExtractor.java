@@ -22,7 +22,7 @@ public class PDFTextExtractor {
 
 		File file = null;
 
-		if (pdfPath != null || !pdfPath.isBlank() || !pdfPath.isEmpty()) {
+		if (pdfPath != null && !pdfPath.isBlank()) {
 			file = new File(pdfPath);
 		}
 
