@@ -38,15 +38,15 @@ public class PDFTextExtractor {
 
 			PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
 
-			String string = pdfTextStripper.getText(pdDocument);
+			String textOfPdf = pdfTextStripper.getText(pdDocument);
 
 			PrintWriter out = null;
 
-			if (txtPath != null || !txtPath.isBlank() || !txtPath.isEmpty()) {
+			if (txtPath != null && !txtPath.isBlank()) {
 				out = new PrintWriter(new FileOutputStream(txtPath));
 			}
 
-			String lines[] = string.split("\\r?\\n");
+			String lines[] = textOfPdf.split("\\r?\\n");
 
 			for (String line : lines) {
 				out.println(line);
