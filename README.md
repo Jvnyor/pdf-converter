@@ -20,6 +20,12 @@ mvn clean install
 mvn clean compile assembly:single
 ```
 
+## Execute jar generated
+
+```
+java -jar target/pdf-text-extractor-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 ## How to use:
 
 **1** - Insert the .pdf file path to extract the text.
